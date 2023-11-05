@@ -1,0 +1,45 @@
+-- Roll up from day to month level
+SELECT DATEPART(YEAR, OrderDate) AS Year,
+       DATEPART(MONTH, OrderDate) AS Month,
+       SUM(SalesAmount) AS TotalSales
+FROM Sales
+GROUP BY DATEPART(YEAR, OrderDate), DATEPART(MONTH, OrderDate);
+
+
+
+-- Dicing for a specific year and product category
+SELECT Year, ProductCategory, SUM(SalesAmount) AS TotalSales
+FROM Sales
+WHERE Year = 2023 AND ProductCategory = 'Electronics'
+GROUP BY Year, ProductCategory;
+
+
+
+-- Slice by year
+SELECT Year, SUM(SalesAmount) AS TotalSales
+FROM Sales
+WHERE Year = 2023
+GROUP BY Year;
+
+
+
+-- Drill down from year to month level
+SELECT DATEPART(YEAR, OrderDate) AS Year,
+       DATEPART(MONTH, OrderDate) AS Month,
+       SUM(SalesAmount) AS TotalSales
+FROM Sales
+GROUP BY DATEPART(YEAR, OrderDate), DATEPART(MONTH, OrderDate);
+
+
+
+
+-- Pivot to display sales by year and product categories
+SELECT *
+FROM (
+    SELECT Year, ProductCategory, SalesAmount
+    FROM Sales
+) AS Source
+PIVOT (
+    SUM(SalesAmount)
+    FOR ProductCategory IN ([Electronics], [Clothing], [Furniture])
+) AS PivotTable;
