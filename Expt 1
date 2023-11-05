@@ -1,0 +1,109 @@
+CREATE TABLE LibraryTransactions (
+    TransactionID INT PRIMARY KEY,
+    TransactionDate DATE,
+    BookID INT,
+    MemberID INT,
+    TransactionType VARCHAR(50),
+    FineAmount DECIMAL(10, 2)
+);
+
+
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(100),
+    Author VARCHAR(100),
+    Genre VARCHAR(50),
+    PublicationYear INT
+);
+
+CREATE TABLE Members (
+    MemberID INT PRIMARY KEY,
+    MemberName VARCHAR(100),
+    MemberType VARCHAR(50),
+    JoinDate DATE
+);
+
+
+CREATE TABLE LibraryBranches (
+    BranchID INT PRIMARY KEY,
+    BranchName VARCHAR(100),
+    Location VARCHAR(100)
+);
+
+CREATE TABLE Librarians (
+    LibrarianID INT PRIMARY KEY,
+    LibrarianName VARCHAR(100),
+    HireDate DATE
+);
+
+CREATE TABLE TransactionTypes (
+    TransactionTypeID INT PRIMARY KEY,
+    TransactionTypeName VARCHAR(50)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Insert dummy data into LibraryTransactions
+INSERT INTO LibraryTransactions (TransactionID, TransactionDate, BookID, MemberID, TransactionType, FineAmount)
+VALUES
+    (1, '2023-11-01', 101, 201, 'Loan', 0.00),
+    (2, '2023-11-02', 102, 202, 'Return', 0.00),
+    (3, '2023-11-03', 103, 203, 'Loan', 2.50),
+    (4, '2023-11-04', 104, 204, 'Loan', 0.00),
+    (5, '2023-11-05', 105, 205, 'Return', 0.00);
+
+-- Insert dummy data into Books
+INSERT INTO Books (BookID, Title, Author, Genre, PublicationYear)
+VALUES
+    (101, 'Book 1', 'Author 1', 'Fiction', 2020),
+    (102, 'Book 2', 'Author 2', 'Mystery', 2019),
+    (103, 'Book 3', 'Author 3', 'Science Fiction', 2021),
+    (104, 'Book 4', 'Author 4', 'Fantasy', 2018),
+    (105, 'Book 5', 'Author 5', 'Romance', 2022);
+
+-- Insert dummy data into Members
+INSERT INTO Members (MemberID, MemberName, MemberType, JoinDate)
+VALUES
+    (201, 'Member 1', 'Student', '2021-01-15'),
+    (202, 'Member 2', 'Faculty', '2019-05-20'),
+    (203, 'Member 3', 'Student', '2022-03-10'),
+    (204, 'Member 4', 'Community', '2020-09-12'),
+    (205, 'Member 5', 'Student', '2023-02-28');
+
+-- Insert dummy data into LibraryBranches
+INSERT INTO LibraryBranches (BranchID, BranchName, Location)
+VALUES
+    (1, 'Main Branch', 'City Center'),
+    (2, 'Branch A', 'Suburb 1'),
+    (3, 'Branch B', 'Suburb 2'),
+    (4, 'Branch C', 'Downtown'),
+    (5, 'Branch D', 'Suburb 3');
+
+-- Insert dummy data into Librarians
+INSERT INTO Librarians (LibrarianID, LibrarianName, HireDate)
+VALUES
+    (1, 'Librarian 1', '2018-07-10'),
+    (2, 'Librarian 2', '2019-12-05'),
+    (3, 'Librarian 3', '2021-03-18'),
+    (4, 'Librarian 4', '2022-08-30'),
+    (5, 'Librarian 5', '2017-05-22');
+
+-- Insert dummy data into TransactionTypes
+INSERT INTO TransactionTypes (TransactionTypeID, TransactionTypeName)
+VALUES
+    (1, 'Loan'),
+    (2, 'Return');
